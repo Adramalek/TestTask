@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+				   assembly="TestTask"
+				   namespace="TestTask.Database.Entity">
+	<class name="EncryptionData" table="EncryptionData">
+		<id name="id" column="id" type="int">
+			<generator class="native"/>
+		</id>
+		<property name="oldSymbol" column="oldSymbol" type="char" not-null="true"/>
+		<property name="newSymbol" column="newSymbol" type="char" not-null="true"/>
+	</class>
+</hibernate-mapping>
