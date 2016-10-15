@@ -6,7 +6,7 @@ namespace TestTask
 {
 	public class TestServer
 	{
-		static void Main(string[] args)
+		static public void Main(string[] args)
 		{
 			Console.Write("Enter a port number: ");
 			int port = int.Parse (Console.ReadLine());
