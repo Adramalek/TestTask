@@ -1,0 +1,10 @@
+﻿create schema black_box;
+use black_box;
+
+create table EncryptionData (
+	id int(15) auto_increment,
+    oldSymbol char(1) not null,
+    newSymbol char(1) not null,
+    primary key(id),
+    constraint enc_line unique(oldSymbol,newSymbol)
+);
