@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+	<configSections>
+		<section name="hibernate-configuration" type="NHibernate.Cfg.ConfigurationSectionHandler, NHibernate"/>
+	</configSections>
+	<connectionString>
+		<add name="db" connectionString="Server=localhost;Database=black_box;User ID=root;Password=MoltenCore;"/>
+	</connectionString>
+	<hibernate-configuration xmlns="urn:nhibernate-configuration-2.2">
+		<session-factory>
+			<property name="connection.provider">NHibernate.Connection.DriverConnectionProvider</property>
+			<property name="dialect">NHibernate.Dialect.MySQL5Dialect</property>
+			<property name="connection.driver_class">NHibernate.Driver.MySqlDataDriver</property>
+			<property name="connection.connection_string_name">db</property>
+		</session-factory>
+	</hibernate-configuration>
+</configuration>
