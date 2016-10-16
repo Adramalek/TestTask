@@ -79,8 +79,7 @@
     <Compile Include="Net\Delegates.cs" />
     <Compile Include="Net\Client\EncryptionClient.cs" />
     <Compile Include="Net\Shared-config\EncryptionConfig.cs" />
-    <Compile Include="TestClien.cs" />
-    <Compile Include="TestServer.cs" />
+    <Compile Include="Test.cs" />
     <Compile Include="Database\DAO\ADAOEntity.cs" />
     <Compile Include="Database\DAO\EncyptionDataDAO.cs" />
     <Compile Include="Database\DAO\QueryType.cs" />
@@ -89,6 +88,8 @@
     <Compile Include="Database\Utils\TableValidator.cs" />
     <Compile Include="Database\Entities\AEntity.cs" />
     <Compile Include="Database\Delegates.cs" />
+    <Compile Include="Utils\Delegates.cs" />
+    <Compile Include="Utils\Validation\Validator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -105,6 +106,8 @@
     <Folder Include="Database\Entities\" />
     <Folder Include="Database\Mapping\" />
     <Folder Include="Database\Utils\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Utils\Validation\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Database\Mapping\EncryptionData.hbm.xml" />
