@@ -3,6 +3,8 @@ using System.Text;
 using System.Net;
 using TestTask.Net.Config;
 using TestTask.Net.Client.Config;
+using TestTask.Util.Validation;
+using TestTask.Util;
 
 namespace TestTask.Net.Client
 {
@@ -31,37 +33,26 @@ namespace TestTask.Net.Client
 
 		private StringBuilder GetMessage()
 		{
-			Console.Write("Choose what to do: load last or write new message [l/w]: ");
-			string answer; bool correct = false;
+			string answer = "", message = ""; bool correct = false;
+			Validator<string> validator = new Validator<string>();
+			AcceptEvent first = (variant) => message = variant == 1 ? lastMessage : Console.ReadLine();
+			AcceptEvent second = (variant) => message = variant == 1 ? config.EncFlag + message : config.DecFlag + message;
+			validator.onFail += () => Console.Write("Invalid input. Try again: ");
+			validator.onAccept += first;
 			do
 			{
+				Console.Write("Choose what to do: load last or write new message [l/w]: ");
 				answer = Console.ReadLine();
-				bool isL = answer.ToLower().Equals("l");
-				bool isW = answer.ToLower().Equals("w");
-				correct = isL || isW;
-				if (!correct)
-				{
-					Console.Write("Invalid input. Try again: ");
-					continue;
-				}
-				if (isL){ answer = lastMessage; }
-				if (isW){ answer = Console.ReadLine(); }
+				correct = validator.Validate(answer.ToLower(),"l","w");
 			} while (!correct);
-			Console.Write("Choose what to do: encrypt or decrypt [e/d]: ");
 			correct = false;
+			validator.onAccept -= first;
+			validator.onAccept += second;
 			do
 			{
+				Console.Write("Choose what to do: encrypt or decrypt [e/d]: ");
 				answer = Console.ReadLine();
-				bool isE = answer.ToLower().Equals("e");
-				bool isD = answer.ToLower().Equals("d");
-				correct = isE || isD;
-				if (!correct)
-				{
-					Console.Write("Invalid input. Try again: ");
-					continue;	
-				}
-				if (isE) { answer = config.EncFlag + answer; }
-				if (isD) { answer = config.DecFlag + answer; }
+				correct = validator.Validate(answer,"e","d");
 			} while (!correct);
 			StringBuilder builder = new StringBuilder().Append(answer);
 			return builder;
